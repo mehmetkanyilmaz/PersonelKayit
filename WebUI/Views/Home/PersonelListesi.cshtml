@@ -46,7 +46,7 @@
         let adSoyad = $("#ara-adsoyad").val();
         let cinsiyet = $("#ara-cinsiyet").val();
         let durum = $("#ara-durum").val();
-
+        $("#ajaxResponse").html('<div class="alert alert-info" role="alert">Lütfen bekleyiniz...</div >');
         $.ajax({
             type: "POST",
             url: "/Home/PersonelListesi",
@@ -61,6 +61,7 @@
             },
             error: function () {
                 alert("Lütfen sistem yöneticiniz ile iletişime geçin.");
+                $("#ajaxResponse").html('<div class="alert alert-danger" role="alert">Veriler listelenemedi...</div >');
             }
         });
     }
