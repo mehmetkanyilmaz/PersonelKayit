@@ -1,0 +1,177 @@
+﻿@model Entities.Dtos.PersonelDto
+
+@{
+    ViewData["Title"] = "Personel";
+}
+<h4>@(Model.personel.no == 0 ? "Yeni Personel Ekle":Model.personel.adi + " " + Model.personel.soyadi)</h4>
+<hr />
+<form asp-action="Personel" enctype="multipart/form-data" asp-antiforgery="true">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group col-lg-12 col-sm-12">
+            <span class="alert alert-danger @(ViewBag.mesaj == null ? "d-none":"")">@ViewBag.mesaj</span>
+        </div>
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.tc_no" class="control-label"></label>
+            <input type="number" asp-for="personel.tc_no" class="form-control" required />
+            <span asp-validation-for="personel.tc_no" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.telefon_no" class="control-label"></label>
+            <input type="number" asp-for="personel.telefon_no" class="form-control" required />
+            <span asp-validation-for="personel.telefon_no" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.adi" class="control-label"></label>
+            <input asp-for="personel.adi" class="form-control" required />
+            <span asp-validation-for="personel.adi" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.soyadi" class="control-label"></label>
+            <input asp-for="personel.soyadi" class="form-control" required />
+            <span asp-validation-for="personel.soyadi" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.sehir" class="control-label"></label>
+            <select asp-for="personel.sehir" class="form-control">
+                <option value="0">Seçiniz</option>
+                <option value="ADANA">ADANA</option>
+                <option value="ADIYAMAN">ADIYAMAN</option>
+                <option value="AFYONKARAHİSAR">AFYONKARAHİSAR</option>
+                <option value="AĞRI">AĞRI</option>
+                <option value="AMASYA">AMASYA</option>
+                <option value="ANKARA">ANKARA</option>
+                <option value="ANTALYA">ANTALYA</option>
+                <option value="ARTVİN">ARTVİN</option>
+                <option value="AYDIN">AYDIN</option>
+                <option value="BALIKESİR">BALIKESİR</option>
+                <option value="BİLECİK">BİLECİK</option>
+                <option value="BİNGÖL">BİNGÖL</option>
+                <option value="BİTLİS">BİTLİS</option>
+                <option value="BOLU">BOLU</option>
+                <option value="BURDUR">BURDUR</option>
+                <option value="BURSA">BURSA</option>
+                <option value="ÇANAKKALE">ÇANAKKALE</option>
+                <option value="ÇANKIRI">ÇANKIRI</option>
+                <option value="ÇORUM">ÇORUM</option>
+                <option value="DENİZLİ">DENİZLİ</option>
+                <option value="DİYARBAKIR">DİYARBAKIR</option>
+                <option value="EDİRNE">EDİRNE</option>
+                <option value="ELAZIĞ">ELAZIĞ</option>
+                <option value="ERZİNCAN">ERZİNCAN</option>
+                <option value="ERZURUM">ERZURUM</option>
+                <option value="ESKİŞEHİR">ESKİŞEHİR</option>
+                <option value="GAZİANTEP">GAZİANTEP</option>
+                <option value="GİRESUN">GİRESUN</option>
+                <option value="GÜMÜŞHANE">GÜMÜŞHANE</option>
+                <option value="HAKKARİ">HAKKARİ</option>
+                <option value="HATAY">HATAY</option>
+                <option value="ISPARTA">ISPARTA</option>
+                <option value="MERSİN">MERSİN</option>
+                <option value="İSTANBUL">İSTANBUL</option>
+                <option value="İZMİR">İZMİR</option>
+                <option value="KARS">KARS</option>
+                <option value="KASTAMONU">KASTAMONU</option>
+                <option value="KAYSERİ">KAYSERİ</option>
+                <option value="KIRKLARELİ">KIRKLARELİ</option>
+                <option value="KIRŞEHİR">KIRŞEHİR</option>
+                <option value="KOCAELİ">KOCAELİ</option>
+                <option value="KONYA">KONYA</option>
+                <option value="KÜTAHYA">KÜTAHYA</option>
+                <option value="MALATYA">MALATYA</option>
+                <option value="MANİSA">MANİSA</option>
+                <option value="KAHRAMANMARAŞ">KAHRAMANMARAŞ</option>
+                <option value="MARDİN">MARDİN</option>
+                <option value="MUĞLA">MUĞLA</option>
+                <option value="MUŞ">MUŞ</option>
+                <option value="NEVŞEHİR">NEVŞEHİR</option>
+                <option value="NİĞDE">NİĞDE</option>
+                <option value="ORDU">ORDU</option>
+                <option value="RİZE">RİZE</option>
+                <option value="SAKARYA">SAKARYA</option>
+                <option value="SAMSUN">SAMSUN</option>
+                <option value="SİİRT">SİİRT</option>
+                <option value="SİNOP">SİNOP</option>
+                <option value="SİVAS">SİVAS</option>
+                <option value="TEKİRDAĞ">TEKİRDAĞ</option>
+                <option value="TOKAT">TOKAT</option>
+                <option value="TRABZON">TRABZON</option>
+                <option value="TUNCELİ">TUNCELİ</option>
+                <option value="ŞANLIURFA">ŞANLIURFA</option>
+                <option value="UŞAK">UŞAK</option>
+                <option value="VAN">VAN</option>
+                <option value="YOZGAT">YOZGAT</option>
+                <option value="ZONGULDAK">ZONGULDAK</option>
+                <option value="AKSARAY">AKSARAY</option>
+                <option value="BAYBURT">BAYBURT</option>
+                <option value="KARAMAN">KARAMAN</option>
+                <option value="KIRIKKALE">KIRIKKALE</option>
+                <option value="BATMAN">BATMAN</option>
+                <option value="ŞIRNAK">ŞIRNAK</option>
+                <option value="BARTIN">BARTIN</option>
+                <option value="ARDAHAN">ARDAHAN</option>
+                <option value="IĞDIR">IĞDIR</option>
+                <option value="YALOVA">YALOVA</option>
+                <option value="KARABÜK">KARABÜK</option>
+                <option value="KİLİS">KİLİS</option>
+                <option value="OSMANİYE">OSMANİYE</option>
+                <option value="DÜZCE">DÜZCE</option>
+            </select>
+            <span asp-validation-for="personel.sehir" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.dogum_tarihi" class="control-label"></label>
+            <input type="date" asp-for="personel.dogum_tarihi" class="form-control" />
+            <span asp-validation-for="personel.dogum_tarihi" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.adres" class="control-label"></label>
+            <textarea asp-for="personel.adres" class="form-control" rows="2"></textarea>
+            <span asp-validation-for="personel.adres" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-lg-6 col-sm-12">
+            <label asp-for="personel.dogum_yeri" class="control-label"></label>
+            <textarea asp-for="personel.dogum_yeri" class="form-control" rows="2"></textarea>
+            <span asp-validation-for="personel.dogum_yeri" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-12 col-sm-12 ml-3">
+            <label asp-for="resim" class="control-label"></label>
+            <input type="file" asp-for="resim" class="custom-file-input">
+            <label class="custom-file-label" asp-for="resim">Dosya Seç...</label>
+        </div>
+        <div class="form-group form-check col-lg-4 col-sm-12">
+            <label asp-for="personel.durum" class="control-label"></label><br />
+            <label class="form-check-label pl-3">
+                <input class="form-check-input" asp-for="personel.durum" /> Aktif Mi?
+            </label>
+        </div>
+        <div class="form-group col-lg-4 col-sm-12">
+            <label asp-for="personel.yaka" class="control-label"></label><br />
+            <label>@Html.RadioButtonFor(m => m.personel.yaka, false) Mavi</label> &emsp;
+            <label>@Html.RadioButtonFor(m => m.personel.yaka, true) Beyaz</label>
+            <span asp-validation-for="personel.yaka" class="text-danger"></span>
+        </div>
+        <div class="form-group col-lg-4 col-sm-12">
+            <label asp-for="personel.cinsiyet" class="control-label"></label><br />
+            <label>@Html.RadioButtonFor(m => m.personel.cinsiyet, false) Kadın</label> &emsp;
+            <label>@Html.RadioButtonFor(m => m.personel.cinsiyet, true) Erkek</label>
+            <span asp-validation-for="personel.yaka" class="text-danger"></span>
+        </div>
+
+        <input type="hidden" asp-for="personel.no" />
+        <input type="hidden" asp-for="personel.resim_base64" />
+        <button type="submit" class="btn @(Model.personel.no == 0 ? "btn-success":"btn-primary")">@(Model.personel.no == 0 ? "Kaydet":"Güncelle")</button>
+    </div>
+</form>
+
+@if (Model.personel.no == 0)
+{
+    <script>
+        $(document).ready(function () {
+            $("#dogum_tarihi").val("2004-01-01");
+        });
+    </script>
+}

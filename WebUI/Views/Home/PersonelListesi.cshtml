@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Personel Listesi";
+}
+
+<h1>Personel Listesi</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Personel">Yeni Oluştur</a>
+</p>
+
+<div class="row">
+    <div class="col-lg-3 col-sm-6 form-group">
+        <label class="control-label">Ad Soyad</label>
+        <input id="ara-adsoyad" class="form-control" oninput="PersonelGetir()" placeholder="Lütfen en az 1 karakter giriniz..." />
+    </div>
+    <div class="col-lg-3 col-sm-6 form-group">
+        <label class="control-label">Cinsiyet</label>
+        <select id="ara-cinsiyet" class="form-control" onchange="PersonelGetir()">
+            <option value="-1">Seçiniz</option>
+            <option value="0">Kadın</option>
+            <option value="1">Erkek</option>
+        </select>
+    </div>
+    <div class="col-lg-3 col-sm-6 form-group">
+        <label class="control-label">Durum</label>
+        <select id="ara-durum" class="form-control" onchange="PersonelGetir()">
+            <option value="-1">Seçiniz</option>
+            <option value="0">Pasif</option>
+            <option value="1">Aktif</option>
+        </select>
+    </div>
+    <div class="col-lg-3 col-sm-6 form-group mt-auto">
+        <button class="btn btn-info" onclick="TumPersoneliGetir()">Tümünü Getir</button>
+    </div>
+</div>
+
+<div id="ajaxResponse"></div>
+
+<script>
+
+    $(document).ready(function () {
+        PersonelGetir();
+    });
+
+    function PersonelGetir() {
+        let adSoyad = $("#ara-adsoyad").val();
+        let cinsiyet = $("#ara-cinsiyet").val();
+        let durum = $("#ara-durum").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/PersonelListesi",
+            delay: "1500",
+            data: {
+                adSoyad: adSoyad,
+                cinsiyet: cinsiyet,
+                durum: durum
+            },
+            success: function (response) {
+                $("#ajaxResponse").html(response);
+            },
+            error: function () {
+                alert("Lütfen sistem yöneticiniz ile iletişime geçin.");
+            }
+        });
+    }
+
+    function TumPersoneliGetir() {
+        $("#ara-adsoyad").val("");
+        $("#ara-cinsiyet").val("-1");
+        $("#ara-durum").val("-1");
+        PersonelGetir();
+    }
+</script>
